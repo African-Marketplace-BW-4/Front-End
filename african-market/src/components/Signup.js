@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 // import Nav from './Nav';
 import * as yup from 'yup';
-import axios from 'axios';
 import { AxiosWithAuth } from '../utils/AxiosWithAuth';
 
 
 import { useHistory } from 'react-router-dom';
 
-const url = 'https://build-week-app.herokuapp.com/api/register';
+
 
 const formSchema = yup.object().shape({
   first_name: yup.string().required('First name is a required field'),

@@ -119,19 +119,19 @@ export default function Updateitem() {
         .get(`https://build-week-app.herokuapp.com/api/items/${id}`)
         .then((res) => setItemToEdit(res.data))
         .catch((err) => console.log(err))
-     },[])
+     },[id])
+    
 
     const [value, setValue] = useState(itemToEdit);
 
     // const itemEdit = [...itemToEdit.initial];
     // console.log(itemEdit, "itemEdit stuff")
-    // const itemList = [...movie.stars];
-    // const mstars = [...movie.stars];
+    
 
     const onChangeHandle = (e) => {
-    //   const name = evt.target.name;
-    //   const changevalue = evt.target.value;
-    //   const id = evt.target.id;
+      const name = e.target.name;
+      const changevalue =e.target.value;
+      const id = e.target.id;
     setItemToEdit({...itemToEdit, [e.target.name]: e.target.value})
 
     //   if (name === 'initial') {
@@ -157,7 +157,8 @@ export default function Updateitem() {
         })
         .catch((err) => console.log(err));
     };
-    const deleteItem = (evt) => {
+    
+    const deleteItem = evt => {
       axios
         .delete(`https://build-week-app.herokuapp.com/api/items/${id}`)
         .then((res) => {
@@ -165,7 +166,9 @@ export default function Updateitem() {
         push('/Home');
       });
     };
+    
     return (
+      
       <form onSubmit={onSubmitHandle}>
           <label htmlFor='name'>Name</label>
         <input
@@ -195,10 +198,10 @@ export default function Updateitem() {
           name='location_id'
           placeholder={`location_id: ${itemToEdit.location_id}`}
         />
-    
+        
         <button onClick={onSubmitHandle}>edit</button>
         <button onClick={deleteItem}>delete</button>
+      
       </form>
- 
-      )
-    };
+    )
+  };
